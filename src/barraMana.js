@@ -1,16 +1,29 @@
-let valorMana = 30; //valor inicial
+let limiteTotalMana = 30;
+let valorMana = limiteTotalMana;
 let valorMagiaFraca = 3;
 let valorMagiaMedia = 6;
 let valorMagiaForte = 12;
 
 module.exports = {};
 
+module.exports.getLimiteTotalMana = () => {
+  return limiteTotalMana;
+};
+
+module.exports.setLimiteTotalMana = (novoLimiteTotalMana) => {
+  limiteTotalMana = novoLimiteTotalMana;
+};
+
 module.exports.getValorMana = () => {
   return valorMana;
 };
 
 module.exports.setValorMana = (novoValorMana) => {
-  valorMana = novoValorMana;
+  if (novoValorMana > limiteTotalMana) {
+    valorMana = limiteTotalMana;
+  } else {
+    valorMana = novoValorMana;
+  }
 };
 
 module.exports.getValorMagiaFraca = () => {
@@ -36,4 +49,17 @@ module.exports.usarMagia = (tipo) => {
     module.exports.setValorMana(valorMana - valorMagiaForte);
     return valorMana;
   }
+};
+
+module.exports.recargaParcial = (valorRecarga) => {
+  module.exports.setValorMana(module.exports.getValorMana() + valorRecarga);
+};
+
+module.exports.recargaTotal = () => {
+  module.exports.setValorMana(limiteTotalMana);
+};
+
+module.exports.usarItemUpgrade = () => {
+  module.exports.setLimiteTotalMana(module.exports.getLimiteTotalMana() + 5);
+  module.exports.setValorMana(limiteTotalMana);
 };
