@@ -22,3 +22,27 @@ test("usar magia forte", () => {
   expect(personagem.usarMagiaForte()).toBe(18);
   expect(barraMana.usarMagia("forte")).toBe(18);
 });
+
+test("subir de nivel", () => {
+  barraMana.setValorMana(30);
+  expect(personagem.upgradeLevel()).toBe(35);
+});
+
+test("setar mana", () => {
+  expect(personagem.setQuantidadeMana(20)).toBe(20);
+  expect(personagem.getQuantidadeMana()).toBe(20);
+  expect(barraMana.setValorMana(20)).toBe(20);
+});
+
+test("recarga parcial", () => {
+  personagem.setQuantidadeMana(20);
+  expect(personagem.recargaParcial(5)).toBe(25);
+  expect(barraMana.recargaParcial(5)).toBe(barraMana.getValorMana() + 5);
+});
+
+test("recarga total", () => {
+  barraMana.setLimiteTotalMana(30);
+  personagem.setQuantidadeMana(20);
+  expect(personagem.recargaTotal()).toBe(30);
+  expect(barraMana.recargaTotal()).toBe(30);
+});

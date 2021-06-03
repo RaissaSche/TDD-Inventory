@@ -51,15 +51,18 @@ module.exports.usarMagia = (tipo) => {
   }
 };
 
-module.exports.recargaParcial = (valorRecarga) => {
-  module.exports.setValorMana(module.exports.getValorMana() + valorRecarga);
-};
-
 module.exports.recargaTotal = () => {
   module.exports.setValorMana(limiteTotalMana);
+  return module.exports.getValorMana();
 };
 
-module.exports.usarItemUpgrade = () => {
+module.exports.recargaParcial = (valorRecarga) => {
+  module.exports.setValorMana(module.exports.getValorMana() + valorRecarga);
+  return module.exports.getValorMana();
+};
+
+module.exports.upgrade = () => {
   module.exports.setLimiteTotalMana(module.exports.getLimiteTotalMana() + 5);
   module.exports.setValorMana(limiteTotalMana);
+  return module.exports.getValorMana();
 };

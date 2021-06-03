@@ -69,6 +69,6 @@ test("recarga total de mana sem passar do valor máximo", () => {
 
 test("upgrade - usar item para aumentar limite máximo de mana", () => {
   barraMana.setLimiteTotalMana(30);
-  barraMana.usarItemUpgrade();
+  barraMana.upgrade();
   expect(barraMana.getValorMana()).toBe(35);
 });
